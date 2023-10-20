@@ -6,12 +6,24 @@ import Head from 'next/head'
 import React, {useEffect, useState} from 'react'
 import {MenuItem, Select} from '@mui/material'
 
+const FavoriteName = 'favorites'
+
 const Home: NextPage = () => {
   const [sortBy, setSortType] = useState(SORT_TYPE.DESC)
   const {ref, inView} = useInView()
   const {data, status, error, fetchNextPage, isFetchingNextPage, refetch} = useGetMovieList({
     sortBy,
   })
+  const [favoriteList, setFavoriteList] = useState<number[]>([])
+
+  useEffect(() => {
+    if (typeof localStorage !== undefined) {
+      const cashFavorites = localStorage.getItem(FavoriteName)
+      if (cashFavorites) {
+        setFavoriteList(JSON.parse(cashFavorites))
+      }
+    }
+  }, [])
 
   useEffect(() => {
     if (inView) {
@@ -22,6 +34,17 @@ const Home: NextPage = () => {
   useEffect(() => {
     refetch()
   }, [sortBy])
+
+  const handleFavorite = (id: number) => {
+    let list: number[] = [...favoriteList]
+    if (favoriteList.find((item) => item === id)) {
+      list = list.filter((item) => id !== item)
+    } else {
+      list.push(id)
+    }
+    setFavoriteList(list)
+    localStorage.setItem(FavoriteName, JSON.stringify(list))
+  }
 
   return (
     <div className='max-w-[1170px] mx-auto p-10'>
@@ -48,11 +71,16 @@ const Home: NextPage = () => {
         <span>Error: {error.message}</span>
       ) : (
         <div>
-          <div className='grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 lg:grid-cols-4 gap-3'>
+          <div className='grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 lg:grid-cols-4 gap-x-3 gap-y-4'>
             {data?.pages?.map((page, i) => (
               <React.Fragment key={i}>
                 {page.data.results.map((item) => (
-                  <MovieItem key={item.id} item={item} />
+                  <MovieItem
+                    isFavorite={!!favoriteList.find((favorite) => favorite === item.id)}
+                    handleFavorite={handleFavorite}
+                    key={item.id}
+                    item={item}
+                  />
                 ))}
               </React.Fragment>
             ))}
