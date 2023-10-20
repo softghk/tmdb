@@ -43,7 +43,7 @@ const Home: NextPage = () => {
         </Select>
       </div>
       {status === 'pending' ? (
-        <p>Loading...</p>
+        <div className='text-center my-10'>Loading ...</div>
       ) : status === 'error' ? (
         <span>Error: {error.message}</span>
       ) : (
