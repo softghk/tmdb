@@ -21,15 +21,10 @@
     ],
     "baseUrl": ".",
     "paths": {
-      "@assets": ["./src/assets"],
-      "@hooks": ["./src/hooks"],
-      "@utilities": ["./src/utilities"],
+      "@utils": ["./src/utils"],
       "@types": ["./src/@types"],
-      "@data": ["./src/data"],
       "@pages/*": ["./src/pages/*"],
-      "@layouts/*": ["./src/layouts/*"],
       "@libs/*": ["./src/libs/*"],
-      "@features/*": ["./src/features/*"],
       "@components": ["./src/components"],
       "@services": ["./src/services"],
       "@styles/*": ["./src/styles/*"]
