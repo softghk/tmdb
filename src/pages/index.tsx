@@ -32,11 +32,13 @@ const Home: NextPage = () => {
     if (inView) {
       fetchNextPage()
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [inView])
 
   // Refetch data after change the sort
   useEffect(() => {
     refetch()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sortBy])
 
   // Handle Favorite
