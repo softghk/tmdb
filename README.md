@@ -2,6 +2,7 @@ This is TMDB project created with Next.js
 
 This project lists popular movies
 
+The client can understand it's sorted by popularity and popularity is different from the IMDB score
 ## Getting Started
 
 First, run the development server:
