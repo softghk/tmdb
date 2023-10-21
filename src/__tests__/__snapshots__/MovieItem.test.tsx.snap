@@ -1,0 +1,67 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MovieItem renders Movie Item unchanged 1`] = `
+<div>
+  <a
+    class="border-zinc-800 p-2 border hover:scale-105 hover:shadow-lg transition-all rounded-lg overflow-hidden bg-blue-200"
+    href="https://www.themoviedb.org/movie/123"
+    target="_blank"
+  >
+    <img
+      alt="Mock Movie"
+      class="w-full rounded-lg"
+      data-nimg="1"
+      decoding="async"
+      height="300"
+      loading="lazy"
+      src="Loading ..."
+      srcset="Loading ... 1x, Loading ... 2x"
+      style="color: transparent;"
+      width="300"
+    />
+    <div
+      class="p-1"
+    >
+      <div
+        class="flex justify-between text-xs text-neutral-400"
+      >
+        <span>
+          IMDB: 
+          8.2
+        </span>
+        <span>
+          2021
+        </span>
+      </div>
+      <div
+        class="flex justify-between items-start"
+      >
+        <h5>
+          Mock Movie
+        </h5>
+        <button
+          class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textWarning MuiButton-sizeSmall MuiButton-textSizeSmall MuiButton-root MuiButton-text MuiButton-textWarning MuiButton-sizeSmall MuiButton-textSizeSmall css-1n582q2-MuiButtonBase-root-MuiButton-root"
+          data-testid="favorite"
+          tabindex="0"
+          type="button"
+        >
+          <svg
+            aria-hidden="true"
+            class="MuiSvgIcon-root MuiSvgIcon-colorWarning MuiSvgIcon-fontSizeMedium css-3adcp6-MuiSvgIcon-root"
+            data-testid="StarIcon"
+            focusable="false"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+            />
+          </svg>
+          <span
+            class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+          />
+        </button>
+      </div>
+    </div>
+  </a>
+</div>
+`;

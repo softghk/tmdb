@@ -5,7 +5,7 @@ import {getImage} from '@utils'
 import StarIcon from '@mui/icons-material/Star'
 import {Button} from '@mui/material'
 
-interface MovieItemProps {
+export interface MovieItemProps {
   item: MovieItemType
   isFavorite: boolean
   handleFavorite: (id: number) => void
@@ -44,6 +44,7 @@ const MovieItem = ({item, isFavorite, handleFavorite}: MovieItemProps) => {
               }}
               size='small'
               color='warning'
+              data-testid="favorite"
             >
               <StarIcon color='warning' />
             </Button>

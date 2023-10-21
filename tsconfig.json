@@ -27,9 +27,10 @@
       "@libs": ["./src/libs"],
       "@components": ["./src/components"],
       "@services": ["./src/services"],
+      "@layout": ["./src/layout"],
       "@styles/*": ["./src/styles/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/__tests__/MovieItem.test.tsx"],
   "exclude": ["node_modules"]
 }
