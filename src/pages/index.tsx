@@ -1,10 +1,9 @@
-import {Loader, MovieItem} from '@components'
+import {Loader, MovieItem, SortSelectBox} from '@components'
 import {SORT_TYPE, useGetMovieList} from '@services'
 import {useInView} from 'react-intersection-observer'
 import type {NextPage} from 'next'
 import Head from 'next/head'
 import React, {useEffect, useState} from 'react'
-import {SortSelectBox} from 'src/components/SortSelectBox'
 
 // Favorite key LocalStorage
 const FavoriteName = 'favorites'
