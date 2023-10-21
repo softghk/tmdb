@@ -1,9 +1,12 @@
-import {Loader, MovieItem, SortSelectBox} from '@components'
+import {Loader, SortSelectBox} from '@components'
 import {SORT_TYPE, useGetMovieList} from '@services'
 import {useInView} from 'react-intersection-observer'
 import type {NextPage} from 'next'
 import Head from 'next/head'
 import React, {useEffect, useState} from 'react'
+import dynamic from 'next/dynamic'
+
+const MovieItem = dynamic(() => import('../components/MovieItem'))
 
 // Favorite key LocalStorage
 const FavoriteName = 'favorites'
@@ -32,13 +35,13 @@ const Home: NextPage = () => {
     if (inView) {
       fetchNextPage()
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [inView])
 
   // Refetch data after change the sort
   useEffect(() => {
     refetch()
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sortBy])
 
   // Handle Favorite
