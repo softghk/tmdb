@@ -1,20 +1,23 @@
-import {MovieItem} from '@components'
+import {Loader, MovieItem} from '@components'
 import {SORT_TYPE, useGetMovieList} from '@services'
 import {useInView} from 'react-intersection-observer'
 import type {NextPage} from 'next'
 import Head from 'next/head'
 import React, {useEffect, useState} from 'react'
-import {MenuItem, Select} from '@mui/material'
+import {SortSelectBox} from 'src/components/SortSelectBox'
 
+// Favorite key LocalStorage
 const FavoriteName = 'favorites'
 
 const Home: NextPage = () => {
+  // Hooks
   const [sortBy, setSortType] = useState(SORT_TYPE.DESC)
+  const [favoriteList, setFavoriteList] = useState<number[]>([])
+
   const {ref, inView} = useInView()
   const {data, status, error, fetchNextPage, isFetchingNextPage, refetch} = useGetMovieList({
     sortBy,
   })
-  const [favoriteList, setFavoriteList] = useState<number[]>([])
 
   useEffect(() => {
     if (typeof localStorage !== undefined) {
@@ -25,16 +28,19 @@ const Home: NextPage = () => {
     }
   }, [])
 
+  // Infinite Scroll
   useEffect(() => {
     if (inView) {
       fetchNextPage()
     }
   }, [inView])
 
+  // Refetch data after change the sort
   useEffect(() => {
     refetch()
   }, [sortBy])
 
+  // Handle Favorite
   const handleFavorite = (id: number) => {
     let list: number[] = [...favoriteList]
     if (favoriteList.find((item) => item === id)) {
@@ -56,17 +62,10 @@ const Home: NextPage = () => {
       </Head>
       <h1 className='text-center text-4xl mt-6 mb-16'>TMDB MOVIES</h1>
       <div className='text-white mb-10'>
-        <Select
-          value={sortBy}
-          onChange={(e) => setSortType(e.target.value as SORT_TYPE)}
-          variant='outlined'
-        >
-          <MenuItem value={SORT_TYPE.ASC}>ASC</MenuItem>
-          <MenuItem value={SORT_TYPE.DESC}>DESC</MenuItem>
-        </Select>
+        <SortSelectBox onChange={setSortType} value={sortBy} />
       </div>
       {status === 'pending' ? (
-        <div className='text-center my-10'>Loading ...</div>
+        <Loader />
       ) : status === 'error' ? (
         <span>Error: {error.message}</span>
       ) : (
@@ -86,7 +85,7 @@ const Home: NextPage = () => {
             ))}
           </div>
           <div ref={ref}></div>
-          {isFetchingNextPage && <div className='text-center my-10'>Loading ...</div>}
+          {isFetchingNextPage && <Loader />}
         </div>
       )}
     </div>

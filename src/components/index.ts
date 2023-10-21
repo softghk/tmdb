@@ -1,1 +1,2 @@
-export * from './movies'
+export * from './MovieItem'
+export * from './Loader'
