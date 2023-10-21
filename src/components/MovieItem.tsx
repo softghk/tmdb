@@ -1,6 +1,6 @@
 import {MovieItemType} from '@types'
 import Image from 'next/image'
-import React, {useState} from 'react'
+import React from 'react'
 import {getImage} from 'src/utils/getImage'
 import FavoriteIcon from '@mui/icons-material/Favorite'
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
@@ -35,6 +35,7 @@ export const MovieItem = ({item, isFavorite, handleFavorite}: MovieItemProps) =>
           </div>
           <div className='flex justify-between items-center'>
             <h5>{item.title}</h5>
+            {/* Favorite Button */}
             <Button
               onClick={(e) => {
                 e.preventDefault()
