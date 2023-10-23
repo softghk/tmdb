@@ -3,6 +3,7 @@ import Image from 'next/image'
 import React from 'react'
 import {getImage} from '@utils'
 import StarIcon from '@mui/icons-material/Star'
+import StarIconOutline from '@mui/icons-material/StarBorderOutlined'
 import {Button} from '@mui/material'
 
 export interface MovieItemProps {
@@ -17,7 +18,7 @@ const MovieItem = ({item, isFavorite, handleFavorite}: MovieItemProps) => {
       <a
         href={`${process.env.NEXT_PUBLIC_BASE}movie/${item.id}`}
         target='_blank'
-        className={`border-zinc-800 p-2 border hover:scale-105 hover:shadow-lg transition-all rounded-lg overflow-hidden ${
+        className={`border-zinc-800 select-none p-2 border md:hover:scale-105 hover:shadow-lg transition-all rounded-lg overflow-hidden ${
           isFavorite ? 'bg-blue-200' : 'bg-white'
         }`}
       >
@@ -25,9 +26,10 @@ const MovieItem = ({item, isFavorite, handleFavorite}: MovieItemProps) => {
           loader={() => 'Loading ...'}
           src={getImage(item.poster_path)}
           alt={item.title}
-          width={300}
+          width={342}
+          priority
           className='w-full rounded-lg'
-          height={300}
+          height={400}
         />
         <div className='p-1'>
           <div className='flex justify-between text-xs text-neutral-400'>
@@ -44,9 +46,9 @@ const MovieItem = ({item, isFavorite, handleFavorite}: MovieItemProps) => {
               }}
               size='small'
               color='warning'
-              data-testid="favorite"
+              data-testid='favorite'
             >
-              <StarIcon color='warning' />
+              {isFavorite ? <StarIcon color='warning' /> : <StarIconOutline color='warning' />}
             </Button>
           </div>
         </div>
